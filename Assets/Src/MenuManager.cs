@@ -23,10 +23,10 @@ public class MenuManager : MonoBehaviour {
         ui.rootVisualElement.Q<Button>("Close").clicked += ClearMenu;
     }
 
-    public void UpdateDebugCount(int count) {
+    public void UpdateDebugCount((int count, GameObject tower) data) {
         UIDocument ui = debugUI.GetComponent<UIDocument>();
 
-        ui.rootVisualElement.Q<Label>("TowerIndex").text = $"Tower: {count}";
+        ui.rootVisualElement.Q<Label>("TowerIndex").text = $"Tower: {data.count} - {data.tower.name}";
     }
 
     public void ClearMenu() {

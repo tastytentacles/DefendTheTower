@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SpawnObject : MonoBehaviour {
-    public int spawnIndex = 0;
-    public InputAction cycleAction;
-
+    int spawnIndex = 0;
     public List<GameObject> prefabs = new List<GameObject>();
+
+
+    public InputAction cycleAction;
     
 
 
@@ -16,7 +17,7 @@ public class SpawnObject : MonoBehaviour {
 
         cycleAction.performed += cycleActionHandler;
 
-        SendMessage("UpdateDebugCount", spawnIndex);
+        SendMessage("UpdateDebugCount", (spawnIndex, prefabs[spawnIndex]));
     }
 
     void OnDisable() {
@@ -30,7 +31,7 @@ public class SpawnObject : MonoBehaviour {
     void cycleActionHandler(InputAction.CallbackContext context) {
         spawnIndex = (spawnIndex + 1) % prefabs.Count;
 
-        SendMessage("UpdateDebugCount", spawnIndex);
+        SendMessage("UpdateDebugCount", (spawnIndex, prefabs[spawnIndex]));
     }
 
     public void SpawnObjectAt(Vector3 position) {

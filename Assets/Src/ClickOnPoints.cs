@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class ClickOnPoints : MonoBehaviour {
     public GameObject cursor;
     public InputAction clickAction;
+    public InputAction AltClickAction;
     public InputAction mousePosition;
 
     private RaycastHit hit;
@@ -16,9 +17,11 @@ public class ClickOnPoints : MonoBehaviour {
 
     void OnEnable() {
         clickAction.Enable();
+        AltClickAction.Enable();
         mousePosition.Enable();
 
         clickAction.performed += clickActionHandler;
+        AltClickAction.performed += AltClickActionHandler;
         mousePosition.performed += mousePositionHandler;
     }
 
@@ -27,6 +30,7 @@ public class ClickOnPoints : MonoBehaviour {
         mousePosition.Disable();
 
         clickAction.performed -= clickActionHandler;
+        AltClickAction.performed -= AltClickActionHandler;
         mousePosition.performed -= mousePositionHandler;
     }
 
@@ -50,6 +54,10 @@ public class ClickOnPoints : MonoBehaviour {
             default:
                 break;
         } 
+    }
+
+    void AltClickActionHandler(InputAction.CallbackContext context) {
+
     }
 
     void mousePositionHandler(InputAction.CallbackContext context) {
