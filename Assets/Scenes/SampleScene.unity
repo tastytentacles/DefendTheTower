@@ -799,7 +799,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42e646b3f3cc42f094aa9d8434cd44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCache: {fileID: 0}
+  speed: 0.25
+  target: {fileID: 0}
 --- !u!1 &1020384254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,7 +1038,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2017093975}
   - component: {fileID: 2017093974}
-  - component: {fileID: 2017093976}
   m_Layer: 5
   m_Name: Upgrade Menu
   m_TagString: Untagged
@@ -1076,20 +1076,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1414544924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2017093976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2017093973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f88a35f4bd0c80c3f96500ad9631b426, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerCache: {fileID: 0}
-  menuManager: {fileID: 218301252}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
