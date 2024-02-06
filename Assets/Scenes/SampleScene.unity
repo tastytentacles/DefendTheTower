@@ -173,7 +173,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   AltClickAction:
-    m_Name: 
+    m_Name: Alt Click
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 7ce04997-aaf4-413e-b009-b2cd33b70ffa
@@ -705,6 +705,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -753,7 +754,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 27
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -779,13 +780,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.34374166, y: 0, z: 0, w: 0.93906426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 7.64, z: -8.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1020384255}
-  m_LocalEulerAnglesHint: {x: 40.21, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f42e646b3f3cc42f094aa9d8434cd44d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerCache: {fileID: 0}
 --- !u!1 &1020384254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,6 +1037,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2017093975}
   - component: {fileID: 2017093974}
+  - component: {fileID: 2017093976}
   m_Layer: 5
   m_Name: Upgrade Menu
   m_TagString: Untagged
@@ -1061,6 +1076,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1414544924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2017093976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017093973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88a35f4bd0c80c3f96500ad9631b426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerCache: {fileID: 0}
+  menuManager: {fileID: 218301252}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
