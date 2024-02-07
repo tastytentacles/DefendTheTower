@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Tower
+  - Mob
   layers:
   - Default
   - TransparentFX
