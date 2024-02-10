@@ -43,7 +43,6 @@ public class ClickOnPoints : MonoBehaviour {
                 break;
             
             case "Tower":
-                // hitObject.parent.SendMessage("Click");
                 hitObject.SendMessage("Click");
                 SendMessage("ShowUpgradeMenu", hitObject.gameObject);
                 break;

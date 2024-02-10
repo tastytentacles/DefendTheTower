@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(BoxCollider))]
 public class TowerBase : MonoBehaviour {
     private List<GameObject> mobsInRange = new List<GameObject>();
-    
+    private float ticker = 0;
+
     public void Click() {
         Debug.LogWarning("TowerBase.Click");
     }
@@ -17,6 +19,17 @@ public class TowerBase : MonoBehaviour {
 
     public void Sell() {
         Destroy(gameObject);
+    }
+
+    void Update() {
+        ticker += Time.deltaTime;
+
+        GameObject closest = ClosestMob();
+        if (closest != null && ticker > 1) {
+            mobsInRange.Remove(closest);
+            Destroy(closest);
+            ticker = 0;
+        }
     }
 
     GameObject ClosestMob() {
