@@ -12,6 +12,8 @@ public class MiniMind : MonoBehaviour {
     public float wait = 0;
     public MiniPointMind owner;
     public GameObject badGuy;
+    
+    [SerializeField] GameObject punchEffect;
 
     NavMeshAgent agent;
     Vector3 target;
@@ -90,6 +92,10 @@ public class MiniMind : MonoBehaviour {
         if (badGuy != null) {
             MiniMind miniMind = badGuy.GetComponent<MiniMind>();
             miniMind.health -= 1;
+
+            if (punchEffect != null) {
+                Instantiate(punchEffect, badGuy.transform.position, Quaternion.LookRotation(transform.position - badGuy.transform.position));
+            }
 
             if (miniMind.health <= 0) {
                 badGuy = null;
