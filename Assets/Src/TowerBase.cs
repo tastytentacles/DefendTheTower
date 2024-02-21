@@ -35,6 +35,8 @@ public class TowerBase : MonoBehaviour {
     GameObject ClosestMob() {
         GameObject closest = null;
         float closestDistance = float.MaxValue;
+        
+        mobsInRange.RemoveAll(mob => mob == null);
         foreach (var mob in mobsInRange) {
             float distance = Vector3.Distance(mob.transform.position, transform.position);
             if (distance < closestDistance) {
@@ -46,14 +48,14 @@ public class TowerBase : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        Debug.Log($"OnTriggerEnter: {other.gameObject.name}");
+        // Debug.Log($"OnTriggerEnter: {other.gameObject.name}");
         if (other.gameObject.tag == "Mob") {
             mobsInRange.Add(other.gameObject);
         }
     }
 
     void OnTriggerExit(Collider other) {
-        Debug.Log($"OnTriggerExit: {other.gameObject.name}");
+        // Debug.Log($"OnTriggerExit: {other.gameObject.name}");
         if (other.gameObject.tag == "Mob" && mobsInRange.Contains(other.gameObject)) {
             mobsInRange.Remove(other.gameObject);
         }

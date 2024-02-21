@@ -10,8 +10,11 @@ public class MobOverMind : MonoBehaviour {
     public List<GameObject> mobPrefabs = new List<GameObject>();
 
     private List<GameObject> mobs = new List<GameObject>();
-    
+    private float ticker = 0;
+
     void SpawnMob() {
+        mobs.RemoveAll(mob => mob == null);
+
         if (mobs.Count >= maxMobs)
             return;
 
@@ -32,6 +35,11 @@ public class MobOverMind : MonoBehaviour {
     }
 
     void Update() {
-        SpawnMob();
+        ticker += Time.deltaTime;
+
+        if (ticker > 1) {
+            SpawnMob();
+            ticker = 0;
+        }
     }
 }

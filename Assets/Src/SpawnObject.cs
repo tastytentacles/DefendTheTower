@@ -4,35 +4,36 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SpawnObject : MonoBehaviour {
-    int spawnIndex = 0;
+    [HideInInspector] public int spawnIndex = 0;
     public List<GameObject> prefabs = new List<GameObject>();
 
 
-    public InputAction cycleAction;
+    // public InputAction cycleAction;
     
 
 
     void OnEnable() {
-        cycleAction.Enable();
+        // cycleAction.Enable();
 
-        cycleAction.performed += cycleActionHandler;
+        // cycleAction.performed += cycleActionHandler;
 
-        SendMessage("UpdateDebugCount", (spawnIndex, prefabs[spawnIndex]));
+        // SendMessage("UpdateDebugCount", (spawnIndex, prefabs[spawnIndex]));
+        SendMessage("UpdateSpawnUI", this);
     }
 
-    void OnDisable() {
-        cycleAction.Disable();
+    // void OnDisable() {
+    //     cycleAction.Disable();
 
-        cycleAction.performed -= cycleActionHandler;
-    }
+    //     cycleAction.performed -= cycleActionHandler;
+    // }
 
 
 
-    void cycleActionHandler(InputAction.CallbackContext context) {
-        spawnIndex = (spawnIndex + 1) % prefabs.Count;
+    // void cycleActionHandler(InputAction.CallbackContext context) {
+    //     spawnIndex = (spawnIndex + 1) % prefabs.Count;
 
-        SendMessage("UpdateDebugCount", (spawnIndex, prefabs[spawnIndex]));
-    }
+    //     SendMessage("UpdateDebugCount", (spawnIndex, prefabs[spawnIndex]));
+    // }
 
     public void SpawnObjectAt(Vector3 position) {
         if (prefabs.Count == 0)

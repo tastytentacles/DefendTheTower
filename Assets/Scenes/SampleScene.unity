@@ -216,26 +216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6e38e24bfe2fd8b97eee5d9487738d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnIndex: 0
   prefabs:
   - {fileID: 9170677102072343428, guid: d114cb39ebb5a21ea8421cf32fcfefc1, type: 3}
   - {fileID: 8782824368443719006, guid: 473c226ce3fc04646854e8de05ba1070, type: 3}
-  cycleAction:
-    m_Name: Cycle
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: f189fb75-71b6-4f59-8c5f-1f7ff14c545a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 44ed4543-2e88-4ea2-8547-1c58c5a82f01
-      m_Path: <Keyboard>/q
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Cycle
-      m_Flags: 0
-    m_Flags: 0
 --- !u!114 &218301252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,8 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8511d2c3ece83d3ce8c32940f741a122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugUI: {fileID: 1147105089}
   upgradeMenu: {fileID: 2017093973}
+  SpawnUi: {fileID: 885170173}
 --- !u!1 &251486013
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,6 +713,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &885170173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 885170174}
+  - component: {fileID: 885170175}
+  m_Layer: 0
+  m_Name: Spawn UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &885170174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885170173}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1414544924}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &885170175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885170173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 87e7a971c8a88e5ffbeb1ccef1e77439, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: a1773921764f1434b9e6f1d86b7db8a2, type: 3}
+  m_SortingOrder: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,7 +916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1147105090
 Transform:
   m_ObjectHideFlags: 0
@@ -1030,6 +1062,7 @@ Transform:
   m_Children:
   - {fileID: 1147105090}
   - {fileID: 2017093975}
+  - {fileID: 885170174}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1453653705
