@@ -87,6 +87,7 @@ public class MiniPointMind : MonoBehaviour {
         MiniMind miniMind = mini.GetComponent<MiniMind>();
         miniMind.owner = miniPointMind;
         miniMind.wait = 15 + Random.Range(2, 7);
+        miniMind.state = MiniMind.State.Walking;
 
         miniPointMind.VerifyCaptue();
     }

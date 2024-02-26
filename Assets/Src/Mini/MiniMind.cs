@@ -11,8 +11,11 @@ public class MiniMind : MonoBehaviour {
     public float health = 10;
     public float wait = 0;
     public MiniPointMind owner;
+    public State state;
     public GameObject badGuy;
     
+    
+    [SerializeField] float slowTickerInterval = 0.5f;
     [SerializeField] GameObject punchEffect;
 
     NavMeshAgent agent;
@@ -20,49 +23,111 @@ public class MiniMind : MonoBehaviour {
 
     float slowTicker = 0;
 
+    public enum State {
+        Idle,
+        Walking,
+        Transport,
+        Combat
+    }
+
     void Start() {
         agent = GetComponent<NavMeshAgent>();
         target = GetRandomPoint();
     }
 
     void Update() {
-        slowTicker += Time.deltaTime;
-
-        if (wait > 0 && badGuy == null) {
-            wait -= Time.deltaTime;
-        }
-
-        if (slowTicker > 0.5f) {
-            if (badGuy == null) {
-                FindBadGuys();
-            } else {
-                if (Vector3.Distance(transform.position, badGuy.transform.position) < 1.5f) {
-                    Punch();
+        switch (state) {
+            case State.Idle:
+                slowTicker += Time.deltaTime;
+                
+                if (wait < 0) {
+                    wait -= Time.deltaTime;
                 }
-            }
 
-            slowTicker = 0;
+                if (slowTicker > slowTickerInterval) {
+                    if (badGuy == null) {
+                        FindBadGuys();
+                    }
+
+                    if (badGuy == null) {
+                        // agent.
+                        GoToPoint(GetRandomPoint());
+                    } else {
+                        state = State.Combat;
+                    }
+                }
+                break;
+            
+            case State.Walking:
+                if (agent.remainingDistance < 0.25f) {
+                    state = State.Idle;
+                }
+                break;
+
+            case State.Transport:
+                if ((owner.transform.position - transform.position).magnitude < 10) {
+                    state = State.Idle;
+                }
+                break;
+            
+            case State.Combat:
+                slowTicker += Time.deltaTime;
+
+                if (slowTicker > slowTickerInterval) {
+                    if (badGuy == null) {
+                        state = State.Idle;
+                    }
+
+                    if (badGuy != null) {
+                        if (Vector3.Distance(transform.position, badGuy.transform.position) < 1.5f) {
+                            Punch();
+                        }
+                    }
+                }
+                break;
         }
 
-        if (agent.remainingDistance < 0.25f) {
-            if (badGuy != null) {
-                target = GetBadGuyPoint();
-            } else {
-                target = GetRandomPoint();
-            }
-            agent.SetDestination(target);
-        }
+        // if (wait > 0 && badGuy == null) {
+        //     wait -= Time.deltaTime;
+        // }
 
-        if (badGuy != null && Vector3.Distance(target, badGuy.transform.position) > .5f) {
-            target = GetBadGuyPoint();
-            agent.SetDestination(target);
-        }
+        // if (slowTicker > 0.5f) {
+        //     if (badGuy == null) {
+        //         FindBadGuys();
+        //     } else {
+        //         if (Vector3.Distance(transform.position, badGuy.transform.position) < 1.5f) {
+        //             Punch();
+        //         }
+        //     }
 
-        if (badGuy != null && badGuy.GetComponent<MiniMind>().owner != owner) {
-            badGuy = null;
-            target = GetRandomPoint();
-            agent.SetDestination(target);
-        }
+        //     slowTicker = 0;
+        // }
+
+        // if (agent.remainingDistance < 0.25f) {
+        //     if (badGuy != null) {
+        //         target = GetBadGuyPoint();
+        //     } else {
+        //         target = GetRandomPoint();
+        //     }
+        //     agent.SetDestination(target);
+        // }
+
+        // if (badGuy != null && Vector3.Distance(target, badGuy.transform.position) > .5f) {
+        //     target = GetBadGuyPoint();
+        //     agent.SetDestination(target);
+        // }
+
+        // if (badGuy != null && badGuy.GetComponent<MiniMind>().owner != owner) {
+        //     badGuy = null;
+        //     target = GetRandomPoint();
+        //     agent.SetDestination(target);
+        // }
+    }
+
+    void GoToPoint(Vector3 point) {
+        target = point;
+        agent.SetDestination(point);
+        state = State.Walking;
     }
 
     Vector3 GetRandomPoint() {
@@ -74,11 +139,13 @@ public class MiniMind : MonoBehaviour {
     }
 
     void FindBadGuys() {
+        badGuy = null;
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, 5);
         if (colliders.Length > 0) {
             foreach (var collider in colliders) {
                 MiniMind miniMind = collider.GetComponentInParent<MiniMind>();
-                if (miniMind != null && miniMind.teamName != teamName && miniMind.owner == owner) {
+                if (miniMind != null && miniMind.teamName != teamName && miniMind.owner == owner && miniMind.state != State.Walking) {
                     badGuy = miniMind.gameObject;
                     if (miniMind.badGuy == null) {
                         miniMind.badGuy = gameObject;
