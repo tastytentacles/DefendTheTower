@@ -11,6 +11,8 @@ public class DroneBody : MonoBehaviour {
 
     float xRotation = 0f;
 
+
+
     void Start() {
         controller = GetComponent<CharacterController>();
         playerCamera = GetComponentInChildren<Camera>();
