@@ -40,7 +40,7 @@ public class MiniMind : MonoBehaviour {
             case State.Idle:
                 slowTicker += Time.deltaTime;
                 
-                if (wait < 0) {
+                if (wait > 0) {
                     wait -= Time.deltaTime;
                 }
 
@@ -59,6 +59,10 @@ public class MiniMind : MonoBehaviour {
                 break;
             
             case State.Walking:
+                if (wait > 0) {
+                    wait -= Time.deltaTime;
+                }
+
                 if (agent.remainingDistance < 0.25f) {
                     state = State.Idle;
                 }
@@ -81,8 +85,12 @@ public class MiniMind : MonoBehaviour {
                     if (badGuy != null) {
                         if (Vector3.Distance(transform.position, badGuy.transform.position) < 1.5f) {
                             Punch();
+                        } else {
+                            GoToPoint(GetBadGuyPoint());
                         }
                     }
+
+                    slowTicker = 0;
                 }
                 break;
         }
@@ -145,7 +153,7 @@ public class MiniMind : MonoBehaviour {
         if (colliders.Length > 0) {
             foreach (var collider in colliders) {
                 MiniMind miniMind = collider.GetComponentInParent<MiniMind>();
-                if (miniMind != null && miniMind.teamName != teamName && miniMind.owner == owner && miniMind.state != State.Walking) {
+                if (miniMind != null && miniMind.teamName != teamName && miniMind.owner == owner) {
                     badGuy = miniMind.gameObject;
                     if (miniMind.badGuy == null) {
                         miniMind.badGuy = gameObject;
@@ -166,8 +174,9 @@ public class MiniMind : MonoBehaviour {
 
             if (miniMind.health <= 0) {
                 badGuy = null;
-                target = GetRandomPoint();
-                agent.SetDestination(target);
+                // target = GetRandomPoint();
+                // agent.SetDestination(target);
+                state = State.Idle;
             }
 
             print($"{teamName} punched {miniMind.teamName} for 1 damage. {miniMind.teamName} has {miniMind.health} health left.");
