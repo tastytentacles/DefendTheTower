@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Label tabindex="-1" text="Defend The Tower Alpha" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 32px; color: rgb(255, 255, 255); padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 16px; margin-right: 16px; margin-bottom: 16px; margin-left: 16px; -unity-font-style: bold;" />
+    <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement style="flex-grow: 1; flex-direction: column; align-items: flex-start; align-self: flex-start; font-size: 24px; color: rgb(183, 183, 183); margin-top: 16px; margin-right: 16px; margin-bottom: 16px; margin-left: 16px;">
+            <ui:Label tabindex="-1" text="Start Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StartGame" />
+            <ui:Label tabindex="-1" text="Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Settings" />
+            <ui:Label tabindex="-1" text="About" parse-escape-sequences="true" display-tooltip-when-elided="true" name="About" />
+        </ui:VisualElement>
+        <ui:ScrollView style="display: flex;" />
+    </ui:VisualElement>
+</ui:UXML>
