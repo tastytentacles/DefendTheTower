@@ -24,11 +24,21 @@ public class DroneBody : MonoBehaviour {
 
         xRotation -= controlBody.lookInput.y * .75f;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        try {
+            playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
-        controller.Move(playerCamera.transform.rotation * new Vector3(
-            controlBody.moveInput.x,
-            0,
-            controlBody.moveInput.y) * Time.fixedDeltaTime * 5f);
+            controller.Move(playerCamera.transform.rotation * new Vector3(
+                controlBody.moveInput.x,
+                0,
+                controlBody.moveInput.y) * Time.fixedDeltaTime * 5f);
+        } catch {
+            controller.Move(transform.rotation * new Vector3(
+                controlBody.moveInput.x,
+                0,
+                controlBody.moveInput.y) * Time.fixedDeltaTime * 5f);
+        }
+        // playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+
+        
     }
 }
